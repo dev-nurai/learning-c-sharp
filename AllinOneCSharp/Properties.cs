@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace AllinOneCSharp
 {
-    public class Class1
+    public class Properties
     {
+        public void Print()
+        {
+            Console.WriteLine("Properties Class is here!");
+        }
     }
 }
