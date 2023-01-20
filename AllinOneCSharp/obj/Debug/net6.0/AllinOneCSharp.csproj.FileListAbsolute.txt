@@ -1,0 +1,15 @@
+C:\Users\techi\source\repos\AllinOneCSharp\AllinOneCSharp\bin\Debug\net6.0\AllinOneCSharp.exe
+C:\Users\techi\source\repos\AllinOneCSharp\AllinOneCSharp\bin\Debug\net6.0\AllinOneCSharp.deps.json
+C:\Users\techi\source\repos\AllinOneCSharp\AllinOneCSharp\bin\Debug\net6.0\AllinOneCSharp.runtimeconfig.json
+C:\Users\techi\source\repos\AllinOneCSharp\AllinOneCSharp\bin\Debug\net6.0\AllinOneCSharp.dll
+C:\Users\techi\source\repos\AllinOneCSharp\AllinOneCSharp\bin\Debug\net6.0\AllinOneCSharp.pdb
+C:\Users\techi\source\repos\AllinOneCSharp\AllinOneCSharp\obj\Debug\net6.0\AllinOneCSharp.csproj.AssemblyReference.cache
+C:\Users\techi\source\repos\AllinOneCSharp\AllinOneCSharp\obj\Debug\net6.0\AllinOneCSharp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\techi\source\repos\AllinOneCSharp\AllinOneCSharp\obj\Debug\net6.0\AllinOneCSharp.AssemblyInfoInputs.cache
+C:\Users\techi\source\repos\AllinOneCSharp\AllinOneCSharp\obj\Debug\net6.0\AllinOneCSharp.AssemblyInfo.cs
+C:\Users\techi\source\repos\AllinOneCSharp\AllinOneCSharp\obj\Debug\net6.0\AllinOneCSharp.csproj.CoreCompileInputs.cache
+C:\Users\techi\source\repos\AllinOneCSharp\AllinOneCSharp\obj\Debug\net6.0\AllinOneCSharp.dll
+C:\Users\techi\source\repos\AllinOneCSharp\AllinOneCSharp\obj\Debug\net6.0\refint\AllinOneCSharp.dll
+C:\Users\techi\source\repos\AllinOneCSharp\AllinOneCSharp\obj\Debug\net6.0\AllinOneCSharp.pdb
+C:\Users\techi\source\repos\AllinOneCSharp\AllinOneCSharp\obj\Debug\net6.0\AllinOneCSharp.genruntimeconfig.cache
+C:\Users\techi\source\repos\AllinOneCSharp\AllinOneCSharp\obj\Debug\net6.0\ref\AllinOneCSharp.dll
