@@ -96,7 +96,6 @@ namespace AllinOneCSharp
 
             //Properties
 
-
             Properties properties = new Properties();
             properties.Print();
 
@@ -129,6 +128,26 @@ namespace AllinOneCSharp
             Console.WriteLine("Std City = {0}", students.City);
 
 
+            //Structs
+
+            Patients structs = new Patients(10, "Abdul");
+            structs.Print(); //Print message
+            structs.PrintPatientDetails(); //Print 1st Patient Details
+
+
+            Patients patients = new Patients();
+            patients.Name = "Ram";
+            patients.ID = 11;
+            patients.PrintPatientDetails();
+
+            Patients patients1 = new Patients
+            {
+                Name = "Laxman",
+                ID = 12
+            };
+            
+            patients1.PrintPatientDetails();
+            
 
         }
     }
