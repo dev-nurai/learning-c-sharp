@@ -96,8 +96,39 @@ namespace AllinOneCSharp
 
             //Properties
 
+
             Properties properties = new Properties();
             properties.Print();
+
+            //Setter and Getter Method
+
+            PStudent students = new PStudent();
+            students.setID(10);
+            students.SetName("John Wick");
+
+            Console.WriteLine("Student Id = {0}", students.GetID());
+            Console.WriteLine("Student Name = {0}", students.GetName());
+            Console.WriteLine("Student Passing Mark = {0}", students.getPassMark());
+
+            //Using Properties
+
+            students.Id = 1099;
+            students.Name = "Atal";
+            //students.passMark = 100;  //Will not assign because it is ReadOnly.
+
+            Console.WriteLine("Std ID = {0}", students.Id);
+            Console.WriteLine("Std Name = {0}", students.Name);
+            Console.WriteLine("Std Passing Marks = {0}", students.passMark);
+
+            //Auto Implemented Properties
+
+            students.Email = "xyz@gmail.com";
+            students.City = "Mumbai";
+
+            Console.WriteLine("Std Email = {0}", students.Email);
+            Console.WriteLine("Std City = {0}", students.City);
+
+
 
         }
     }
