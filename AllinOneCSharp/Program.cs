@@ -148,6 +148,25 @@ namespace AllinOneCSharp
             
             patients1.PrintPatientDetails();
             
+            //Structs vs Class
+
+            StructsvsClass structsvsClass = new StructsvsClass();
+            structsvsClass.ID = 13;
+            structsvsClass.Name = "Machine";
+
+            Console.WriteLine("ID = {0} and Name = {1} (Struct Class)", structsvsClass.ID, structsvsClass.Name);
+
+            int i = 10;
+            int j = i; //Copying the Value.
+            j += 1;
+
+            Console.WriteLine("i = {0} and j = {1}", i, j);
+
+            StructsvsClass structsvsClass1 = structsvsClass; //Copying the reference.
+            structsvsClass1.ID = 14;
+            structsvsClass1.Name = "Mark";
+
+            Console.WriteLine("ID = {0} and Name = {1} (Struct1 Class)", structsvsClass1.ID, structsvsClass1.Name);
 
         }
     }
