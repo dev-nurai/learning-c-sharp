@@ -168,6 +168,20 @@ namespace AllinOneCSharp
 
             Console.WriteLine("ID = {0} and Name = {1} (Struct1 Class)", structsvsClass1.ID, structsvsClass1.Name);
 
+            //Interface
+
+            NewCustomer ICust = new NewCustomer();
+            //ICustomer ICust = new NewCustomer(); //Interface reference can be used for Class object
+            ICust.Print();
+
+            //Interface - inheritance Chain
+
+            Maths maths = new SubjectScore();
+            maths.PrintMathsScore();
+
+            Sci sci = new SubjectScore();
+            sci.PrintSciScore();
+
         }
     }
 
