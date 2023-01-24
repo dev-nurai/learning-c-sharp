@@ -2,6 +2,8 @@
 using System.Security.Cryptography.X509Certificates;
 using static AllinOneCSharp.Employee;
 using static AllinOneCSharp.Sports;
+using System;
+using System.IO;
 
 namespace AllinOneCSharp
 {
@@ -294,6 +296,39 @@ namespace AllinOneCSharp
             sampleDelegate3(out DelegateOutputParameterValue);
 
             Console.WriteLine("DelegateOutputParameterValue = {0}", DelegateOutputParameterValue);
+
+            //Exception Handling
+
+            //using System;
+            //using System.IO; //use this above
+
+            StreamReader streamReader = null; //
+            try //The code 
+            {
+                streamReader = new StreamReader(@"C:\Users\techi\OneDrive\Desktop\letter.txt");
+                Console.WriteLine(streamReader.ReadToEnd());
+                //streamReader.Close(); is used to close Reading. If the Stream found error then last two lines will work and Reader will
+                //be working. To handle this we have added the code in the below finally block.
+            }
+            catch (FileNotFoundException except) //If any file name change or delete then we will found the error over here
+            {
+                //Log the details to the DB
+                Console.WriteLine("Please check this file {0} exists or deleted?",except.FileName);
+            }
+            catch (Exception ex) //This is for all general Exception. Above (FileNotFound) is single or particular type.
+            {
+                Console.WriteLine(ex.Message);
+                //Console.WriteLine(ex.StackTrace); //Cryptic Message where we can find the Error (line)
+
+            }
+            finally //
+            {
+                if(streamReader != null)
+                {
+                    streamReader.Close();
+                }
+                Console.WriteLine("Finally Block Stop the Reader");
+            }
 
 
         }
