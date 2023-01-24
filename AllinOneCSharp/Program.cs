@@ -1,4 +1,6 @@
-﻿using static AllinOneCSharp.Employee;
+﻿using System.ComponentModel.Design;
+using System.Security.Cryptography.X509Certificates;
+using static AllinOneCSharp.Employee;
 using static AllinOneCSharp.Sports;
 
 namespace AllinOneCSharp
@@ -145,9 +147,9 @@ namespace AllinOneCSharp
                 Name = "Laxman",
                 ID = 12
             };
-            
+
             patients1.PrintPatientDetails();
-            
+
             //Structs vs Class
 
             StructsvsClass structsvsClass = new StructsvsClass();
@@ -182,6 +184,153 @@ namespace AllinOneCSharp
             Sci sci = new SubjectScore();
             sci.PrintSciScore();
 
+            //Explicit Interface
+
+            ExplicitInterFace explicitInterFace = new ExplicitInterFace();
+
+            explicitInterFace.InterFaceMethod(); //Using Default Method
+
+            //Using Explicit Mehtod
+
+            //Typecast method
+            ((I2)explicitInterFace).InterFaceMethod();
+            ((I3)explicitInterFace).InterFaceMethod();
+
+
+            I2 i2 = new ExplicitInterFace();
+            i2.InterFaceMethod();
+            I3 i3 = new ExplicitInterFace();
+            i3.InterFaceMethod();
+
+            //Abstract Class
+            AbstractClass abstractClass = new Abstract();
+            abstractClass.Print();
+
+            AbstractvsInterface abs = new Abs();
+            abs.PrintAbstract();
+
+
+            D d = new D();
+            d.Print();
+
+            //Multiple Classes
+
+            ClassAB classAB = new ClassAB();
+            classAB.MethodA();
+            classAB.MethodB();
+
+            //Delegates
+
+            DelegatesMessage getUserMessage = new DelegatesMessage(DelegatesMessage);
+            getUserMessage("Hi, This is on Delegates method.");
+
+            static void DelegatesMessage(string usersMessage)
+            {
+                Console.WriteLine(usersMessage);
+            }
+
+            //TCS Example - Delegates
+
+            List<TCSEmployee> tCSEmployees = new List<TCSEmployee>();
+            tCSEmployees.Add(new TCSEmployee() { ID = 101, Name = "Hazle", Salary = 10000, Experience = 10 });
+            tCSEmployees.Add(new TCSEmployee() { ID = 102, Name = "John", Salary = 4000, Experience = 4 });
+            tCSEmployees.Add(new TCSEmployee() { ID = 103, Name = "Tom", Salary = 1000, Experience = 1 });
+            tCSEmployees.Add(new TCSEmployee() { ID = 104, Name = "Obama", Salary = 5000, Experience = 5 });
+
+            //Lamda Expression
+            TCSEmployee.PromoteEmployee(tCSEmployees, emp => emp.Experience >= 5);
+
+            //IsPromotable isPromotable = new IsPromotable(Promote);
+            //TCSEmployee.PromoteEmployee(tCSEmployees, isPromotable);
+
+
+            //static bool Promote(TCSEmployee tCSEmployee)
+            //{
+            //    if (tCSEmployee.Experience >= 5)
+            //    {
+            //        return true;
+            //    }
+            //    else
+            //    {
+            //        return false;
+            //    }
+            //}
+
+            //Multicast Delegates || + or - approach
+
+            //Function void type
+
+            SampleDelegate del1 = new SampleDelegate(SampleMethodOne); //
+            SampleDelegate del2 = new SampleDelegate(SampleMethodTwo);
+            SampleDelegate del3 = new SampleDelegate(SampleMethodThree);
+
+            SampleDelegate del4 = del1+ del2 + del3 - del2; //del4, multicast more functions (del1, del2, del3)
+            del4(); //del4 is invoked all above function.
+
+            //Multicast Delegates || += or -= approach
+
+            SampleDelegate del = new SampleDelegate(SampleMethodOne);
+            del += SampleMethodTwo;
+            del += SampleMethodThree;
+            del -= SampleMethodOne;
+
+            del();
+
+            //Function int type
+            SampleDelegate2 sampleDelegate2 = new SampleDelegate2(SampleMethod1);
+            sampleDelegate2 += SampleMethod2;
+
+            int DelegateReturnValue = sampleDelegate2(); //int DelegateReturnValue can hold one value so the last value will be stored.
+
+            Console.WriteLine("DelegateReturnValue = {0}", DelegateReturnValue);
+
+            //Using out Parameters
+
+            SampleDelegate3 sampleDelegate3 = new SampleDelegate3(SampleMethod3);
+            sampleDelegate3 += SampleMethod4;
+
+            int DelegateOutputParameterValue = -1;
+
+            sampleDelegate3(out DelegateOutputParameterValue);
+
+            Console.WriteLine("DelegateOutputParameterValue = {0}", DelegateOutputParameterValue);
+
+
+        }
+
+        //Multicast Delegates in void
+        public static void SampleMethodOne()
+        {
+            Console.WriteLine("Sample One invoked");
+        }
+        public static void SampleMethodTwo()
+        {
+            Console.WriteLine("Sample Two invoked");
+        }
+        public static void SampleMethodThree()
+        {
+            Console.WriteLine("Sample Three invoked");
+        }
+
+        //Multicast Delegates in return
+
+        public static int SampleMethod1()
+        {
+            return 1;
+        }
+        public static int SampleMethod2()
+        {
+            return 2;
+        }
+
+        //Using out Parameters
+        public static void SampleMethod3(out int Number)
+        {
+            Number = 1;
+        }
+        public static void SampleMethod4(out int Number)
+        {
+            Number = 2;
         }
     }
 
