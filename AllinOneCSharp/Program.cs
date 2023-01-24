@@ -239,7 +239,7 @@ namespace AllinOneCSharp
             tCSEmployees.Add(new TCSEmployee() { ID = 103, Name = "Tom", Salary = 1000, Experience = 1 });
             tCSEmployees.Add(new TCSEmployee() { ID = 104, Name = "Obama", Salary = 5000, Experience = 5 });
 
-            //Lamda Expression
+            //Lambda Expression
             TCSEmployee.PromoteEmployee(tCSEmployees, emp => emp.Experience >= 5);
 
             //IsPromotable isPromotable = new IsPromotable(Promote);
@@ -266,7 +266,7 @@ namespace AllinOneCSharp
             SampleDelegate del2 = new SampleDelegate(SampleMethodTwo);
             SampleDelegate del3 = new SampleDelegate(SampleMethodThree);
 
-            SampleDelegate del4 = del1+ del2 + del3 - del2; //del4, multicast more functions (del1, del2, del3)
+            SampleDelegate del4 = del1 + del2 + del3 - del2; //del4, multicast more functions (del1, del2, del3)
             del4(); //del4 is invoked all above function.
 
             //Multicast Delegates || += or -= approach
@@ -329,7 +329,49 @@ namespace AllinOneCSharp
                 }
                 Console.WriteLine("Finally Block Stop the Reader");
             }
+            Console.WriteLine("---------------------------------------------------------");
 
+            //Inner Exception Handling
+            try
+            {
+
+                try
+                {
+                    Console.WriteLine("Please enter the First Number");
+                    int firstNumber = Convert.ToInt32(Console.ReadLine());
+
+                    Console.WriteLine("Please enter the Second Number");
+                    int secondNumber = Convert.ToInt32(Console.ReadLine());
+
+                    int result = firstNumber / secondNumber;
+                    Console.WriteLine("Result = {0}", result);
+                }
+                catch (Exception exception)
+                {
+                    string filePath = @"C:\Users\techi\OneDrive\Desktops\store-inner-exception.txt";
+                    if (File.Exists(filePath))
+                    {
+                        StreamWriter streamWriter = new StreamWriter(filePath);
+                        streamWriter.WriteLine(exception.GetType().Name);
+                        streamWriter.WriteLine(exception.Message);
+                        streamWriter.Close();
+                        Console.WriteLine("There is a problem, Please later.");
+                    }
+                    else
+                    {
+                        throw new FileNotFoundException(filePath + " is not present", exception);
+                    }
+                }
+            }
+            catch (Exception except)
+            {
+                Console.WriteLine("Current Exception = {0}", except.GetType().Name);
+                if(except != null)
+                {
+                    Console.WriteLine("Inner Exception = {0}", except.InnerException.GetType().Name);
+                }
+            }
+            
 
         }
 
