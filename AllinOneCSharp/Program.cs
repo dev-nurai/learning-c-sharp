@@ -332,46 +332,103 @@ namespace AllinOneCSharp
             Console.WriteLine("---------------------------------------------------------");
 
             //Inner Exception Handling
+
+            // --- Check out below
+            //try
+            //{
+
+            //    try
+            //    {
+            //        Console.WriteLine("Please enter the First Number");
+            //        int firstNumber = Convert.ToInt32(Console.ReadLine());
+
+            //        Console.WriteLine("Please enter the Second Number");
+            //        int secondNumber = Convert.ToInt32(Console.ReadLine());
+
+            //        int result = firstNumber / secondNumber;
+            //        Console.WriteLine("Result = {0}", result);
+            //    }
+            //    catch (Exception exception)
+            //    {
+            //        string filePath = @"C:\Users\techi\OneDrive\Desktops\store-inner-exception.txt";
+            //        if (File.Exists(filePath))
+            //        {
+            //            StreamWriter streamWriter = new StreamWriter(filePath);
+            //            streamWriter.WriteLine(exception.GetType().Name);
+            //            streamWriter.WriteLine(exception.Message);
+            //            streamWriter.Close();
+            //            Console.WriteLine("There is a problem, Please later.");
+            //        }
+            //        else
+            //        {
+            //            throw new FileNotFoundException(filePath + " is not present", exception);
+            //        }
+            //    }
+            //}
+            //catch (Exception except)
+            //{
+            //    Console.WriteLine("Current Exception = {0}", except.GetType().Name);//GetType() is used to get Exception type
+            //    if (except != null) //
+            //    {
+            //        Console.WriteLine("Inner Exception = {0}", except.InnerException.GetType().Name); 
+            //    }
+            //}
+
+            //Custom Exception
+
+            //throw new FileNotFoundException("File x not found"); //.Net have the constructor to show message to FileNotFoundException
+           try
+            {
+                throw new UserAlreadyLoggedInException("Already Logged In - no Dupicate session allowed");
+            }
+            catch (UserAlreadyLoggedInException userExcept)
+            {
+                Console.WriteLine(userExcept.Message);
+            }
+
+            //Error Handling Abuse
+
             try
             {
+                Console.WriteLine("Please enter Numerator");
+                int Numerator;
 
-                try
+                bool isNumeratorConversionSuccessful = Int32.TryParse(Console.ReadLine(), out Numerator);
+
+                if (isNumeratorConversionSuccessful)
                 {
-                    Console.WriteLine("Please enter the First Number");
-                    int firstNumber = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Please enter Denominator");
+                    int Denominator;
 
-                    Console.WriteLine("Please enter the Second Number");
-                    int secondNumber = Convert.ToInt32(Console.ReadLine());
-
-                    int result = firstNumber / secondNumber;
-                    Console.WriteLine("Result = {0}", result);
-                }
-                catch (Exception exception)
-                {
-                    string filePath = @"C:\Users\techi\OneDrive\Desktops\store-inner-exception.txt";
-                    if (File.Exists(filePath))
+                    bool isDenomintorConversionSuccessful = Int32.TryParse(Console.ReadLine(), out Denominator);
+                    if (isDenomintorConversionSuccessful && Denominator != 0)
                     {
-                        StreamWriter streamWriter = new StreamWriter(filePath);
-                        streamWriter.WriteLine(exception.GetType().Name);
-                        streamWriter.WriteLine(exception.Message);
-                        streamWriter.Close();
-                        Console.WriteLine("There is a problem, Please later.");
+                        int Result = Numerator / Denominator;
+                        Console.WriteLine("Result = {0}", Result);
                     }
                     else
                     {
-                        throw new FileNotFoundException(filePath + " is not present", exception);
+                        if (Denominator == 0)
+                        {
+                            Console.WriteLine("Denominator cannot be Zero");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Denominator should be a valid number from {0} to {1}", Int32.MinValue, Int32.MaxValue);
+                        }
                     }
+
                 }
-            }
-            catch (Exception except)
-            {
-                Console.WriteLine("Current Exception = {0}", except.GetType().Name);
-                if(except != null)
+                else
                 {
-                    Console.WriteLine("Inner Exception = {0}", except.InnerException.GetType().Name);
+                    Console.WriteLine("Numerator should be a valid number from {0} to {1}", Int32.MinValue, Int32.MaxValue);
                 }
             }
-            
+            catch (Exception exc)
+            {
+                Console.WriteLine(exc.Message);
+            }
+
 
         }
 
