@@ -4,6 +4,7 @@ using static AllinOneCSharp.Employee;
 using static AllinOneCSharp.Sports;
 using System;
 using System.IO;
+using static AllinOneCSharp.Client;
 
 namespace AllinOneCSharp
 {
@@ -429,7 +430,68 @@ namespace AllinOneCSharp
                 Console.WriteLine(exc.Message);
             }
 
+            //Enums
 
+            Client[] client = new Client[3];
+
+            client[0] = new Client
+            {
+                Name = "Jack Sparrow",
+                gender = Gender.Male
+            };
+            client[1] = new Client
+            {
+                Name = "Jessica",
+                gender = Gender.Female
+            };
+            client[2] = new Client
+            {
+                Name = "Loki",
+                gender = Gender.Unknow
+            };
+
+            foreach(Client client1 in client)
+            {
+                Console.WriteLine("Name = {0} and Gender = {1}", client1.Name, GetGender(client1.gender));
+            }
+
+            //Enums - Values
+            short[] Values = (short[])Enum.GetValues(typeof(Gender));
+            foreach(short value in Values)
+            {
+                Console.WriteLine(value);
+            }
+            //Enums - Names
+            string[] Names = Enum.GetNames(typeof(Gender));
+            foreach(string name in Names)
+            {
+                Console.WriteLine(name);
+            }
+
+            //Enums - Explicit Cast
+            Gender xGender = (Gender)3; 
+            int xNum = (int)Gender.Male;
+            Console.WriteLine("Enum Explicit Cast Value = {0}", xNum); //Output = 1 (Gender.Male)
+
+            Gender yGender = (Gender)Season.Winter;
+            Console.WriteLine("Enums Ex - {0}", yGender); //Output = Unknown (Enum-Gender)
+
+        }
+
+        //Enums
+        public static string GetGender (Gender gender)
+        {
+            switch (gender)
+            {
+                case Gender.Unknow:
+                    return "Unknown";
+                case Gender.Male:
+                    return "Male";
+                case Gender.Female:
+                    return "Female";
+                default:
+                    return "Invalid Data";
+            }
         }
 
         //Multicast Delegates in void
