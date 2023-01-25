@@ -31,7 +31,7 @@ namespace AllinOneCSharp
         }
     }
 
-    class ClassAB : InterfaceB, InterfaceA 
+    class ClassAB : InterfaceB, InterfaceA //Using Interface we are inheriting multiple Classes.
     {
         ClassA classa = new ClassA();
         ClassB classb = new ClassB();
@@ -48,3 +48,7 @@ namespace AllinOneCSharp
 
 
 }
+
+/*
+ Interface A and B is used to build multiple classes.
+ */

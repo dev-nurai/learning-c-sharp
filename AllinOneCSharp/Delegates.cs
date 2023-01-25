@@ -22,7 +22,7 @@ namespace AllinOneCSharp
     //    }
 
 
-    delegate bool IsPromotable(TCSEmployee empl);
+    delegate bool IsPromotable(TCSEmployee empl); //Ask Jitan, Shamshad
     class TCSEmployee
     {
         public int ID { get; set; }
@@ -44,11 +44,17 @@ namespace AllinOneCSharp
 
 }
 
-    /*
-     Delegates are type safe function pointer.
-    Same Signature are allowed (void or any but same, also parameters)
+/*
+ Delegates are type safe function pointer.
+    In C#, a delegate is a type that defines a method signature.
+    It can be used to pass methods as arguments to other methods, or to define callback methods.
+    Delegates are similar to function pointers in C and C++, but are type-safe and secure.
+    They can be used to create events and event handlers in C#,
+    and are an important part of the language's support for functional programming.
 
-    Use delegrate when we need function as parameter.
+Same Signature are allowed (void or any but same, also parameters)
 
-    >> Lamda Expression
-     */
+Use delegrate when we need function as parameter.
+
+>> Lamda Expression
+ */

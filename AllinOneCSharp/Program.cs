@@ -432,6 +432,10 @@ namespace AllinOneCSharp
 
             //Enums
 
+            #region Enums
+            
+            //#region is used to toggle your reguired fields 
+
             Client[] client = new Client[3];
 
             client[0] = new Client
@@ -475,6 +479,12 @@ namespace AllinOneCSharp
 
             Gender yGender = (Gender)Season.Winter;
             Console.WriteLine("Enums Ex - {0}", yGender); //Output = Unknown (Enum-Gender)
+
+            #endregion
+
+            //Access-Modifiers
+
+
 
         }
 

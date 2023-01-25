@@ -22,6 +22,11 @@ namespace AllinOneCSharp
         void PrintInterface(); //Cannot have implementation
     }
 
+    public class Abs : AbstractvsInterface
+    {
+
+    }
+
 }
 
 

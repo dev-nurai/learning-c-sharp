@@ -19,6 +19,7 @@ namespace AllinOneCSharp
     //Sealed Class
 
     public sealed class Customer { }
+    public static class Customer1 { }; //Check this
     //public class OnlineShopper : Customer { } //OnlineShopper will not inHerit from Customer Class because of the sealed.
 
     //Structs are inHerit sealed type, they can't act as parent type for a type or structs.
