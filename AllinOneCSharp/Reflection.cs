@@ -57,6 +57,5 @@ namespace AllinOneCSharp
 
     Reflection is use for "Late Binding".
  
- 
- 
+    Note: Try to use Early Binding over Late Binding.
  */

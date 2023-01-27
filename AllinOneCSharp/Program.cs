@@ -5,6 +5,9 @@ using static AllinOneCSharp.Sports;
 using System;
 using System.IO;
 using static AllinOneCSharp.Client;
+using System.Reflection; //Use for Reflection
+using static AllinOneCSharp.Billionaire;
+using System.Text;
 
 namespace AllinOneCSharp
 {
@@ -482,10 +485,198 @@ namespace AllinOneCSharp
 
             #endregion
 
-            //Access-Modifiers
+            //Attributes
+
+            //Calculator.CalAdd(new List<int>() { 12, 22, 10});
+
+            Console.WriteLine("Sum Hai = {0}", Calculator.CalAdd(12, 10));
+
+            Console.WriteLine("SumOf = {0}", Calculator.CalAdd(new List<int>() { 10, 292, 292 }));
 
 
+            //Reflections----------------------------------
 
+            //Find all elements present in Assembly or Project
+            Type type = Type.GetType("AllinOneCSharp.User");
+            //Type type = typeof(User);
+            //User U1 = new User();
+            //Type type = U1.GetType();
+
+            Console.WriteLine("Full Name = {0}", type.FullName);
+            Console.WriteLine("Just Namespace = {0}", type.Namespace);
+
+            Console.WriteLine();
+
+            //Get All Properties details
+            PropertyInfo[] properties1 = type.GetProperties();
+            foreach(PropertyInfo property in properties1)
+            {
+                Console.WriteLine("Properties: {0}", property.Name);
+                Console.WriteLine(property.PropertyType.Name);
+            }
+
+            Console.WriteLine();
+
+            //Get All Method details
+            MethodInfo[] methods = type.GetMethods();
+            foreach (MethodInfo method in methods)
+            {
+                Console.WriteLine("Method: {0}", method.Name);
+                Console.WriteLine(method.ReturnType.Name);
+            }
+
+            Console.WriteLine();
+
+            //Get All Constructor details
+            ConstructorInfo[] constructors = type.GetConstructors();
+            foreach (ConstructorInfo constructor in constructors)
+            {
+                //Console.WriteLine("Constructor: {0}", constructor.Name);
+                Console.WriteLine(constructor.ToString);
+            }
+
+            //Early binding -------
+            TechUser techUser = new TechUser();
+            string fullName = techUser.GetFullName("Ajay", "Nagar");
+            Console.WriteLine(fullName);
+
+            //Late Binding using Reflection--------------
+
+            //First Load the Assembly to get the Class
+            Assembly executingAssembly = Assembly.GetExecutingAssembly();
+
+            //Load Class
+            Type typeTechUser = executingAssembly.GetType("AllinOneCSharp.TechUser");
+
+            //Creating instance of the class
+            Object techUserInstance = Activator.CreateInstance(typeTechUser);
+
+            //Method that need to invode
+            MethodInfo getFullNameMethod = typeTechUser.GetMethod("GetFullName");
+
+            //Parameters
+            string[] parameters = new string[2];
+            parameters[0] = "Ajay";
+            parameters[1] = "Nagar";
+
+            //Invoke
+            string fullNameTechUser = (string)getFullNameMethod.Invoke(techUserInstance, parameters);
+            Console.WriteLine(fullNameTechUser);
+
+            //Generics ------
+
+            //bool Equal = EqualCalculator.AreEqual(10, "10"); 
+            bool Equal = EqualCalculator.AreEqual<string>("10", "10"); //Class generic
+            //bool Equal = EqualCalculator<string>.AreEqual("10", "10"); //Class generic
+
+            if(Equal)
+            {
+                Console.WriteLine("Equal");
+            }
+            else
+            {
+                Console.WriteLine("Not Equal");
+            }
+
+            //String
+
+            //toString
+            int meraNumber = 99;
+            Console.WriteLine(meraNumber.ToString());
+
+            Billionaire billionaire = new Billionaire();
+            billionaire.firstName = "Elon";
+            billionaire.lastName = "Musk";
+
+            Console.WriteLine(billionaire.ToString()); // if we convert string to string using toString, will print "AllinOneCharp.Billionaire
+            //Use override toString Class 
+
+            //Equals
+
+            //Equals-int
+            int apple = 1;
+            int banana = 1;
+
+            //Console.WriteLine(apple == banana);
+            //Console.WriteLine(apple.Equals(banana));
+
+            //Equals-Enums
+
+            Direction direction1 = Direction.East;
+            Direction direction2 = Direction.West;
+
+            Console.WriteLine(direction1 == direction2);
+            Console.WriteLine(direction1.Equals(direction2));
+
+            //Equals-Objects
+
+            Traveller traveller1 = new Traveller();
+            traveller1.firstName = "Vinod";
+            traveller1.lastName = "Kumar";
+
+            //Equals Fails here
+
+            //Object is One and Two Reference are Same to Object
+            //Traveller traveller2 = traveller1;
+
+            //Objects are different
+
+            Traveller traveller2 = new Traveller();
+            traveller2.firstName = "Vinod";
+            traveller2.lastName = "Kumar";
+
+            //Here Equals Fails to detect the value camparison. //Equals is not know how to compare so we write Override method.
+
+            Console.WriteLine(traveller1 == traveller2);
+            Console.WriteLine(traveller1.Equals(traveller2));
+
+            //toSting() vs Convert.ToString()
+
+            Movie movie = new Movie();
+            //Movie movie = null;
+
+            //string movieNaam = movie.ToString();
+            string movieNaam1 = Convert.ToString(movie);
+            //Console.WriteLine(movieNaam);
+            Console.WriteLine(movieNaam1);
+
+
+            //System.String vs String builder
+
+            //System.String
+            string userString = "Learn";
+            userString += " C#";
+            userString += " with";
+            userString += " Venkat";
+
+            Console.WriteLine(userString);
+
+            //String Builder
+
+            //Add System.Text; in start
+
+            StringBuilder blogger = new StringBuilder("Learn");
+            blogger.Append(" Javascript");
+            blogger.Append(" fron");
+            blogger.Append(" FreeCodeCamp");
+            Console.WriteLine(blogger.ToString());
+
+            //Partial Class
+
+            //Partial Method
+
+        }
+
+        //Partial Class
+
+        public abstract class AbsClass
+        {
+            
+        }
+
+        public interface IShop
+        {
+            void IShop();
         }
 
         //Enums
