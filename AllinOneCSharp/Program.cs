@@ -8,6 +8,10 @@ using static AllinOneCSharp.Client;
 using System.Reflection; //Use for Reflection
 using static AllinOneCSharp.Billionaire;
 using System.Text;
+using System.Runtime.InteropServices;
+using System.Collections.Generic;
+using System.Runtime.ConstrainedExecution;
+using System.Runtime.Intrinsics.X86;
 
 namespace AllinOneCSharp
 {
@@ -33,7 +37,7 @@ namespace AllinOneCSharp
 
             Console.WriteLine(C1.yourName); //test
 
-            //Circle  Program -- Ends Here -------------------------
+            //Circle  Program -- Ends Here ------------------------------------------------------------------------------------------
 
             //Inheritance Pratice Starts Here
 
@@ -44,7 +48,7 @@ namespace AllinOneCSharp
             fullTimeEmployee.PrintFullName();
             fullTimeEmployee.PrintSalary();
 
-            //Inheritance Pratice Ends Here -------------------------
+            //Inheritance Pratice Ends Here ------------------------------------------------------------------------------------------
 
             //Methods Class Call hiding
 
@@ -84,7 +88,7 @@ namespace AllinOneCSharp
             {
                 x.StudentName();
             }
-            //Polymorphism Starts Here------------------------------------
+            //Polymorphism Starts Here ------------------------------------------------------------------------------------------
 
             //Override Class vs Hiding Class
 
@@ -102,7 +106,7 @@ namespace AllinOneCSharp
             methodOverloading.Add(2, 3);
             methodOverloading.Add(2, 3, 9);
 
-            //Properties
+            //Properties ------------------------------------------------------------------------------------------
 
             Properties properties = new Properties();
             properties.Print();
@@ -136,7 +140,7 @@ namespace AllinOneCSharp
             Console.WriteLine("Std City = {0}", students.City);
 
 
-            //Structs
+            //Structs -----------------------------------------------------------------------------------------------------------
 
             Patients structs = new Patients(10, "Abdul");
             structs.Print(); //Print message
@@ -156,7 +160,7 @@ namespace AllinOneCSharp
 
             patients1.PrintPatientDetails();
 
-            //Structs vs Class
+            //Structs vs Class ------------------------------------------------------------------------------------------
 
             StructsvsClass structsvsClass = new StructsvsClass();
             structsvsClass.ID = 13;
@@ -176,7 +180,7 @@ namespace AllinOneCSharp
 
             Console.WriteLine("ID = {0} and Name = {1} (Struct1 Class)", structsvsClass1.ID, structsvsClass1.Name);
 
-            //Interface
+            //Interface ---------------------------------------------------------------------------------------------------
 
             NewCustomer ICust = new NewCustomer();
             //ICustomer ICust = new NewCustomer(); //Interface reference can be used for Class object
@@ -208,7 +212,7 @@ namespace AllinOneCSharp
             I3 i3 = new ExplicitInterFace();
             i3.InterFaceMethod();
 
-            //Abstract Class
+            //Abstract Class ------------------------------------------------------------------------------------------
             AbstractClass abstractClass = new Abstract();
             abstractClass.Print();
 
@@ -225,7 +229,7 @@ namespace AllinOneCSharp
             classAB.MethodA();
             classAB.MethodB();
 
-            //Delegates
+            //Delegates --------------------------------------------------------------------------------------------------
 
             DelegatesMessage getUserMessage = new DelegatesMessage(DelegatesMessage);
             getUserMessage("Hi, This is on Delegates method.");
@@ -301,7 +305,7 @@ namespace AllinOneCSharp
 
             Console.WriteLine("DelegateOutputParameterValue = {0}", DelegateOutputParameterValue);
 
-            //Exception Handling
+            //Exception Handling ------------------------------------------------------------------------------------------
 
             //using System;
             //using System.IO; //use this above
@@ -335,7 +339,7 @@ namespace AllinOneCSharp
             }
             Console.WriteLine("---------------------------------------------------------");
 
-            //Inner Exception Handling
+            //Inner Exception Handling ------------------------------------------------------------------------------------------
 
             // --- Check out below
             //try
@@ -381,7 +385,7 @@ namespace AllinOneCSharp
             //Custom Exception
 
             //throw new FileNotFoundException("File x not found"); //.Net have the constructor to show message to FileNotFoundException
-           try
+            try
             {
                 throw new UserAlreadyLoggedInException("Already Logged In - no Dupicate session allowed");
             }
@@ -390,7 +394,7 @@ namespace AllinOneCSharp
                 Console.WriteLine(userExcept.Message);
             }
 
-            //Error Handling Abuse
+            //Error Handling Abuse ------------------------------------------------------------------------------------------
 
             try
             {
@@ -433,10 +437,10 @@ namespace AllinOneCSharp
                 Console.WriteLine(exc.Message);
             }
 
-            //Enums
+            //Enums -----------------------------------------------------------------------------------------------------------
 
             #region Enums
-            
+
             //#region is used to toggle your reguired fields 
 
             Client[] client = new Client[3];
@@ -485,7 +489,7 @@ namespace AllinOneCSharp
 
             #endregion
 
-            //Attributes
+            //Attributes -------------------------------------------------------------------------------------------------
 
             //Calculator.CalAdd(new List<int>() { 12, 22, 10});
 
@@ -494,7 +498,7 @@ namespace AllinOneCSharp
             Console.WriteLine("SumOf = {0}", Calculator.CalAdd(new List<int>() { 10, 292, 292 }));
 
 
-            //Reflections----------------------------------
+            //Reflections ------------------------------------------------------------------------------------------
 
             //Find all elements present in Assembly or Project
             Type type = Type.GetType("AllinOneCSharp.User");
@@ -554,7 +558,7 @@ namespace AllinOneCSharp
             //Method that need to invode
             MethodInfo getFullNameMethod = typeTechUser.GetMethod("GetFullName");
 
-            //Parameters
+            //Parameters ---------
             string[] parameters = new string[2];
             parameters[0] = "Ajay";
             parameters[1] = "Nagar";
@@ -563,7 +567,7 @@ namespace AllinOneCSharp
             string fullNameTechUser = (string)getFullNameMethod.Invoke(techUserInstance, parameters);
             Console.WriteLine(fullNameTechUser);
 
-            //Generics ------
+            //Generics ----------------------------------------------------------------------------------------------------
 
             //bool Equal = EqualCalculator.AreEqual(10, "10"); 
             bool Equal = EqualCalculator.AreEqual<string>("10", "10"); //Class generic
@@ -578,7 +582,7 @@ namespace AllinOneCSharp
                 Console.WriteLine("Not Equal");
             }
 
-            //String
+            //String ----------------------------------------------------------------------------------------------------
 
             //toString
             int meraNumber = 99;
@@ -591,7 +595,7 @@ namespace AllinOneCSharp
             Console.WriteLine(billionaire.ToString()); // if we convert string to string using toString, will print "AllinOneCharp.Billionaire
             //Use override toString Class 
 
-            //Equals
+            //Equals ------------------------------------------------------------------------------------------
 
             //Equals-int
             int apple = 1;
@@ -641,7 +645,7 @@ namespace AllinOneCSharp
             Console.WriteLine(movieNaam1);
 
 
-            //System.String vs String builder
+            //System.String vs String builder ------------------------------------------------------------------------------------------
 
             //System.String
             string userString = "Learn";
@@ -661,17 +665,365 @@ namespace AllinOneCSharp
             blogger.Append(" FreeCodeCamp");
             Console.WriteLine(blogger.ToString());
 
-            //Partial Class
 
-            //Partial Method
+            //Indexers -------------------------------------------------------------------------------------------------------
 
-        }
+            Infosys infosys = new Infosys();
+            Console.WriteLine("Name of Employee with Id = 2 " + infosys[2]);
+            Console.WriteLine("Name of Employee with Id = 3 " + infosys[3]);
+            Console.WriteLine("Name of Employee with Id = 5 " + infosys[5]);
 
-        //Partial Class
-
-        public abstract class AbsClass
-        {
+            Console.WriteLine("Changing Employee Name");
             
+            //Use set access to change the values
+            infosys[2] = "2nd Employee Name";
+            infosys[3] = "3rd Employee Name";
+            infosys[5] = "5th Employee Name";
+
+            Console.WriteLine("Name of Employee with Id = 2 " + infosys[2]);
+            Console.WriteLine("Name of Employee with Id = 3 " + infosys[3]);
+            Console.WriteLine("Name of Employee with Id = 5 " + infosys[5]);
+
+            //Changing Gender in database
+
+            Console.WriteLine("Before Changing the Gender");
+            Console.WriteLine("Total Male = " + infosys["Male"]);
+            Console.WriteLine("Total Female = " + infosys["Female"]);
+
+            infosys["Male"] = "Female";
+
+            Console.WriteLine("After Changing the Gender");
+            Console.WriteLine("Total Male = " + infosys["Male"]);
+            Console.WriteLine("Total Female = " + infosys["Female"]);
+
+            //Optional Parameters ------------------------------------------------------------------------------------------
+
+            OptionalParameters.SumOfNum(10, 11, new int[] { 10, 9} );
+
+            //Named Parameter
+            OptionalParameters.Test(1, 13, 45);
+
+            //Dicitionary ---------------------------------------------------------------------------------------------------
+
+            Farmer farmer1 = new Farmer()
+            {
+                ID = 101,
+                Name = "Roshan",
+                Earning = 5000
+            };
+            Farmer farmer2 = new Farmer()
+            {
+                ID = 102,
+                Name = "Rajesh",
+                Earning = 6100
+            };
+            Farmer farmer3 = new Farmer()
+            {
+                ID = 103,
+                Name = "Anup",
+                Earning = 5800
+            };
+
+            Dictionary<int, Farmer> dictionaryFarmers = new Dictionary<int, Farmer>();
+
+            //Add Farmer's object to the dicitonary
+            dictionaryFarmers.Add(farmer1.ID, farmer1);
+            dictionaryFarmers.Add(farmer2.ID, farmer2);
+            dictionaryFarmers.Add(farmer3.ID, farmer3);
+
+            //Find 
+
+            Farmer farmerid102 = dictionaryFarmers[102];
+            Console.WriteLine("Farmer ID = {0}, Name = {1}, and Earning = {2}", farmerid102.ID, farmerid102.Name, farmerid102.Earning);
+
+            //Using foreach Loop
+
+            foreach (KeyValuePair<int, Farmer> farmerKeyValuePair in dictionaryFarmers)
+            //foreach (var farmerKeyValuePair in dictionaryFarmers) use KeyValuePair for code understanding.
+            {
+                Console.WriteLine("Key = {0}", farmerKeyValuePair.Key);
+
+                Farmer findFarmer = farmerKeyValuePair.Value;
+                Console.WriteLine("Farmer ID = {0}, Name = {1}, and Earning = {2}", findFarmer.ID, findFarmer.Name, findFarmer.Earning);
+                Console.WriteLine("---------------------------");
+
+            }
+            //Alternative
+
+            //foreach(Farmer findFarmer in dictionaryFarmers.Values)
+            //{
+            //    Console.WriteLine("Farmer ID = {0}, Name = {1}, and Earning = {2}", findFarmer.ID, findFarmer.Name, findFarmer.Earning);
+            //    Console.WriteLine("---------------------------");
+            //}
+
+            //Find that keys is available or not
+
+            if(!dictionaryFarmers.ContainsKey(farmer1.ID))
+            {
+                dictionaryFarmers.Add (farmer1.ID, farmer1);
+            }
+
+            //Check key is present or not
+
+            if (dictionaryFarmers.ContainsKey(199))
+            {
+                Farmer farmerid199 = dictionaryFarmers[199];
+            }
+
+            //TryGetValue
+
+            Farmer farmer;
+            if(dictionaryFarmers.TryGetValue(101, out farmer))
+            {
+                Console.WriteLine("ID = {0}, Name = {1}, Earning = {2}", farmer.ID, farmer.Name, farmer.Earning);
+            }
+            else
+            {
+                Console.WriteLine("Keys not found!");
+            }
+
+            //Count
+
+            Console.WriteLine("Total Count: {0}", dictionaryFarmers.Count());
+            Console.WriteLine("Total Count: {0}", dictionaryFarmers.Count(kvp => kvp.Value.Earning > 5500));
+
+            //Remove()
+            dictionaryFarmers.Remove(110); //If the Key is unlisted then it won't effect.
+
+            //dictionaryFarmers.Clear(); //Will Clear all
+
+            //Covert Arrays into Dictionary
+
+            Farmer[] arrayOfFarmers = new Farmer[3];
+            arrayOfFarmers[0] = farmer1;
+            arrayOfFarmers[1] = farmer2;
+            arrayOfFarmers[2] = farmer3;
+
+            Dictionary<int, Farmer> dict = arrayOfFarmers.ToDictionary(farm => farm.ID, farm => farm);
+
+            foreach(KeyValuePair<int, Farmer> kvp in dict)
+            {
+                Console.WriteLine("Key = {0}", kvp.Key);
+                Farmer far = kvp.Value;
+                Console.WriteLine("Array. Id = {0}, Name = {1}, Earning = {2}", far.ID, far.Name, far.Earning);
+            }
+
+
+            //List Class -------------------------------------------------------------------------------------------------
+
+            Cricketer cricketer1 = new Cricketer()
+            {
+                Id = 12,
+                Name = "MS Dhoni",
+                Salary = 1500,
+                Type = "Men's Cricket"
+            };
+            Cricketer cricketer2 = new Cricketer()
+            {
+                Id = 13,
+                Name = "Smriti Mandhana",
+                Salary = 1000,
+                Type = "Women's Cricket"
+            };
+            Cricketer cricketer3 = new Cricketer()
+            {
+                Id = 14,
+                Name = "Virat Kohli",
+                Salary = 1300,
+                Type = "Men's Cricket"
+
+            };
+            Cricketer cricketer4 = new Cricketer()
+            {
+                Id = 15,
+                Name = "Mithali Raj",
+                Salary = 900,
+                Type = "Women's Cricket"
+            };
+            Cricketer cricketer5 = new Cricketer()
+            {
+                Id = 16,
+                Name = "Rohit Sharma",
+                Salary = 1000,
+                Type = "Men's Cricket"
+            };
+
+            List<Cricketer> cricketerList = new List<Cricketer>(2); //Here list of arrays can grow automatically
+            cricketerList.Add(cricketer1);
+            cricketerList.Add(cricketer2);
+            cricketerList.Add(cricketer3);
+            cricketerList.Add(cricketer4);
+            cricketerList.Add(cricketer5);
+
+            Cricketer cric = cricketerList[1]; //Find the object details using Index
+
+            Console.WriteLine("Cricketer's Id = {0}, Name = {1}, Salary = {2}", cric.Id, cric.Name, cric.Salary);
+
+            Console.WriteLine("Using ForEach Loop-------------------------------------------");
+
+            foreach(Cricketer cricketer in cricketerList)
+            {
+                Console.WriteLine("Cricketer's Id = {0}, Name = {1}, Salary = {2}", cricketer.Id, cricketer.Name, cricketer.Salary);
+            }
+            Console.WriteLine("Using For Loop-------------------------------------------");
+
+            for(int icount = 0; icount < cricketerList.Count; icount++)
+            {
+                Cricketer cricketer = cricketerList[icount];
+                Console.WriteLine("Cricketer's Id = {0}, Name = {1}, Salary = {2}", cricketer.Id, cricketer.Name, cricketer.Salary);
+            }
+
+            //List is Strongly Type - Means above example is of Object type <Cricketer> so we can't enter Other type...
+
+            //cricketerList.Add(100); //We not added to the List because it's contain Int type.
+            //To use
+
+            //newKeeper newKeeper = new newKeeper();
+
+            //cricketerList.Add(newKeeper); //It will add to the list because it's class is inherit from base Class (Cricketer).
+
+            //To Insert Object to any location in the list 
+            cricketerList.Insert(0, cricketer4); // This will create new same given object to the given location. List will increase.
+
+            Console.WriteLine("Using Insert------------------------------------------");
+
+            foreach (Cricketer cricketer in cricketerList)
+            {
+                Console.WriteLine("Cricketer's Id = {0}, Name = {1}, Salary = {2}", cricketer.Id, cricketer.Name, cricketer.Salary);
+            }
+
+            Console.WriteLine("Using Retrive------------------------------------------");
+            Console.WriteLine("Searching From Start = {0}", cricketerList.IndexOf(cricketer4));
+            Console.WriteLine("Searching From Given Index = {0}", cricketerList.IndexOf(cricketer4, 1));
+            Console.WriteLine("Searching From Given Index-Range = {0}", cricketerList.IndexOf(cricketer4, 1, 3)); //Output = -1, if not found
+            //Console.WriteLine("Searching From Given Index-Range Exd = {0}", cricketerList.IndexOf(cricketer4, 1, 9)); //Fail because "Out of Index-Range"
+
+            //List Functions ------------------------------------------------------------------------------------------------
+
+            //find the items is available or not in the "list"
+
+            //Contians() function - List (Return - bool)
+
+            Console.WriteLine("List Functions------------------------------------------");
+            if (cricketerList.Contains(cricketer4))
+            {
+                Console.WriteLine("Object exists in the list");
+            }
+            else
+            {
+                Console.WriteLine("Object does not exists in the list");
+            }
+
+            //Exists() function - List (Return - bool)
+
+            if (cricketerList.Exists(cric => cric.Name.StartsWith("Z"))) //Use Lambda expression to find
+            {
+                Console.WriteLine("Object exists in the list");
+            }
+            else
+            {
+                Console.WriteLine("Object does not exists in the list");
+            }
+
+            Console.WriteLine("List Find Functions------------------------------------------");
+            //Find() function - (Return - single object)
+
+            Cricketer findCricketer = cricketerList.Find(cric => cric.Name.StartsWith("V"));
+
+            Console.WriteLine("Id = {0}, Name = {1}, Salary = {2}", findCricketer.Id, findCricketer.Name, findCricketer.Salary);
+
+            //FindLast() function - (Return - single object)
+
+            Cricketer findCricketerlast = cricketerList.FindLast(cric => cric.Salary > 1000);
+
+            Console.WriteLine("Id = {0}, Name = {1}, Salary = {2}", findCricketerlast.Id, findCricketerlast.Name, findCricketerlast.Salary);
+
+            //FindAll() function - (Return - All List of object)
+
+            List<Cricketer> findCricketerAll = cricketerList.FindAll(crick => crick.Salary > 1000);
+
+            foreach(Cricketer cricket in findCricketerAll)
+            {   
+                Console.WriteLine("Id = {0}, Name = {1}, Salary = {2}", cricket.Id, cricket.Name, cricket.Salary);
+            }
+
+            //FindIndex() function - (Return - index in int)
+
+            int findIndexOfList = cricketerList.FindIndex(1, indcric => indcric.Salary > 1000); //1 represent where to starts
+
+            Console.WriteLine("Index = " + findIndexOfList);
+
+            //FindLastIndex() function - (Return - index in int)
+            int findLastIndexOfList = cricketerList.FindLastIndex(1, indcric => indcric.Salary > 1000);
+
+            Console.WriteLine("Index = " + findLastIndexOfList);
+
+            Console.WriteLine("Convert Array to List------------------------------------------");
+
+            //Convert an Array to List = use ToList()
+            Cricketer[] newArrayCricketer = new Cricketer[3];
+            newArrayCricketer[0] = cricketer1;
+            newArrayCricketer[1] = cricketer2;
+            newArrayCricketer[2] = cricketer3;
+
+            List<Cricketer> newArrayList = newArrayCricketer.ToList();
+            foreach (Cricketer cricket in newArrayList)
+            {
+                Console.WriteLine("ID = {0}, Name = {1}, Salary = {2}", cricket.Id, cricket.Name, cricket.Salary);
+            }
+            Console.WriteLine("Convert list to Array------------------------------------------");
+
+            //Convert a list to array = use ToArray()
+
+            List<Cricketer> lsCricketers = new List<Cricketer>();
+            lsCricketers.Add(cricketer1);
+            lsCricketers.Add(cricketer2);
+            lsCricketers.Add(cricketer3);
+
+            Cricketer[] arrayCricketers = lsCricketers.ToArray();
+
+            foreach(Cricketer cricket in arrayCricketers)
+            {
+                Console.WriteLine("ID = {0}, Name = {1}, Salary = {2}", cricket.Id, cricket.Name, cricket.Salary);
+            }
+
+            Console.WriteLine("Convert list to Dictionary------------------------------------------");
+
+            //Use the same List object
+
+            Dictionary<int, Cricketer> cricketDictionary = lsCricketers.ToDictionary(x => x.Id);
+            foreach(KeyValuePair<int, Cricketer> kvp in cricketDictionary)
+            {
+                Console.WriteLine("Key = {0}", kvp.Key);
+                Cricketer cricketer = kvp.Value;
+                Console.WriteLine("ID = {0}, Name = {1}, Salary = {2}", cricketer.Id, cricketer.Name, cricketer.Salary);
+            }
+
+            //Range Methods in List -----------------------------------------------------------------------------------------
+            Console.WriteLine("Range Methods in List ------------------------------------------");
+
+            List<Cricketer> Cricketlist = new List<Cricketer>();
+            Cricketlist.Add(cricketer1);
+            Cricketlist.Add(cricketer3);
+            Cricketlist.Add(cricketer5);
+
+            List<Cricketer> womensCricketlist = new List<Cricketer>();
+            womensCricketlist.Add(cricketer2);
+            womensCricketlist.Add(cricketer4);
+
+            //Add Womens Cricketer-list to Mens
+            Cricketlist.AddRange(womensCricketlist);
+
+            foreach(Cricketer cricket in Cricketlist)
+            {
+                Console.WriteLine("ID = {0}, Name = {1}, Salary = {2}, Type = {3}", cricket.Id, cricket.Name, cricket.Salary, cricket.Type);
+            }
+
+        }  //---Main() Program ---Ends Here--------------------------------------------------------------------------------
+
+        private static void Az1(int v1, int v2)
+        {
+            throw new NotImplementedException();
         }
 
         public interface IShop
