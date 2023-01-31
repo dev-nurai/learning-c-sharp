@@ -22,7 +22,7 @@ namespace AllinOneCSharp
     //    }
 
 
-    delegate bool IsPromotable(TCSEmployee empl); //Ask Jitan, Shamshad
+    delegate bool IsPromotable(TCSEmployee empl); //Ask Jitan or Shamshad Bhai
     class TCSEmployee
     {
         public int ID { get; set; }

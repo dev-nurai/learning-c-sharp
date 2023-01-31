@@ -14,3 +14,11 @@ namespace AllinOneCSharp
 
     }
 }
+
+/*
+
+//Dictionary is used when are look up for something. Find();
+    - List will go on loop (all object) and reduce the efficiency, Dictionary will use the keyvaluepair to find the object.
+
+    Hushtable Storage ??
+*/

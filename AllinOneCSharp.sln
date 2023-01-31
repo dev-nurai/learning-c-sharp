@@ -5,9 +5,9 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AllinOneCSharp", "AllinOneCSharp\AllinOneCSharp.csproj", "{5E407C1E-52EB-4E5E-BBB2-0A63BBB87C9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssemblyOne", "AssemblyOne\AssemblyOne.csproj", "{D038C529-A973-4F7A-9EAB-81AAD50DEC3C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssemblyOne", "AssemblyOne\AssemblyOne.csproj", "{D038C529-A973-4F7A-9EAB-81AAD50DEC3C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssemblyTwo", "AssemblyTwo\AssemblyTwo.csproj", "{DF9D1F17-5CE3-4639-B450-6C0C19356189}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssemblyTwo", "AssemblyTwo\AssemblyTwo.csproj", "{DF9D1F17-5CE3-4639-B450-6C0C19356189}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -7,7 +7,7 @@ using static AllinOneCSharp.Program;
 
 namespace AllinOneCSharp
 {
-    public partial class PartialClass : AbsClass
+    public partial class PartialClass
     {
         public string GetFullName()
         {

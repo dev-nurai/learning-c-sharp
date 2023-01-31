@@ -12,6 +12,11 @@ using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.Runtime.ConstrainedExecution;
 using System.Runtime.Intrinsics.X86;
+using System.Runtime.CompilerServices;
+using static AllinOneCSharp.Footballer;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
+
 
 namespace AllinOneCSharp
 {
@@ -1000,7 +1005,7 @@ namespace AllinOneCSharp
             }
 
             //Range Methods in List -----------------------------------------------------------------------------------------
-            Console.WriteLine("Range Methods in List ------------------------------------------");
+            Console.WriteLine("AddRange Methods in List ------------------------------------------");
 
             List<Cricketer> Cricketlist = new List<Cricketer>();
             Cricketlist.Add(cricketer1);
@@ -1012,14 +1017,590 @@ namespace AllinOneCSharp
             womensCricketlist.Add(cricketer4);
 
             //Add Womens Cricketer-list to Mens
-            Cricketlist.AddRange(womensCricketlist);
+            Cricketlist.AddRange(womensCricketlist); //Adding all list of Women's to main list using AddRange
 
             foreach(Cricketer cricket in Cricketlist)
             {
                 Console.WriteLine("ID = {0}, Name = {1}, Salary = {2}, Type = {3}", cricket.Id, cricket.Name, cricket.Salary, cricket.Type);
             }
 
+            //To retrive items from the list
+            Console.WriteLine("GetRange Methods in List ------------------------------------------");
+
+            List<Cricketer> cricketerGetRange = Cricketlist.GetRange(3, 2);
+
+            foreach (Cricketer cricket in cricketerGetRange)
+            {
+                Console.WriteLine("ID = {0}, Name = {1}, Salary = {2}, Type = {3}", cricket.Id, cricket.Name, cricket.Salary, cricket.Type);
+            }
+
+            //InsertRange of items to the list
+            Console.WriteLine("InsertRange Methods in List ------------------------------------------");
+
+            Cricketlist.InsertRange(0, womensCricketlist);
+
+            foreach (Cricketer cricket in Cricketlist)
+            {
+                Console.WriteLine("ID = {0}, Name = {1}, Salary = {2}, Type = {3}", cricket.Id, cricket.Name, cricket.Salary, cricket.Type);
+            }
+
+            //RemoveRange of items to the list
+            Console.WriteLine("RemoveAll Methods in List ------------------------------------------");
+
+            //Cricketlist.Remove(cricketer1); //Will remove single item using Object
+            //Cricketlist.RemoveAt(2); //Will remove single item using Index
+
+            Cricketlist.RemoveAll(x => x.Type == "Women's Cricket");
+
+            foreach (Cricketer cricket in Cricketlist)
+            {
+                Console.WriteLine("ID = {0}, Name = {1}, Salary = {2}, Type = {3}", cricket.Id, cricket.Name, cricket.Salary, cricket.Type);
+            }
+
+            Console.WriteLine("RemoveRange Methods in List ------------------------------------------");
+            Cricketlist.RemoveRange(0, 2);
+            foreach (Cricketer cricket in Cricketlist)
+            {
+                Console.WriteLine("ID = {0}, Name = {1}, Salary = {2}, Type = {3}", cricket.Id, cricket.Name, cricket.Salary, cricket.Type);
+            }
+
+            //Sorting
+            Console.WriteLine("Sorting the List ------------------------------------------");
+
+            List<int> numbers = new List<int>() { 2, 1,6,3,8,9,4};
+            Console.WriteLine("Numbers before Sorting ------------------------------------------");
+            foreach(int number in numbers)
+            {
+                Console.WriteLine(number);
+            }
+
+            numbers.Sort();
+            Console.WriteLine("Numbers After Sorting ------------------------------------------");
+            foreach (int number in numbers)
+            {
+                Console.WriteLine(number);
+            }
+
+            List<string> alphabets = new List<string>() { "D", "J", "Q", "I" };
+            Console.WriteLine("alphabets before Sorting ------------------------------------------");
+            foreach (string alphabet in alphabets)
+            {
+                Console.WriteLine(alphabet);
+            }
+
+            alphabets.Sort();
+            Console.WriteLine("alphabets After Sorting ------------------------------------------");
+            foreach (string alphabet in alphabets)
+            {
+                Console.WriteLine(alphabet);
+            }
+
+            //Reverse Sorting
+            alphabets.Reverse();
+            Console.WriteLine("Reverse alphabets After Sorting ------------------------------------------");
+            foreach (string alphabet in alphabets)
+            {
+                Console.WriteLine(alphabet);
+            }
+
+            //Sorting for Complex problems
+            Console.WriteLine("Sorting for Complex problems ------------------------------------------");
+
+            Footballer footballer1 = new Footballer()
+            {
+                Id = 1,
+                Name = "Qasim",
+                Salary = 7500
+            };
+            Footballer footballer2 = new Footballer()
+            {
+                Id = 4,
+                Name = "Pooja",
+                Salary = 9000
+            };
+            Footballer footballer3 = new Footballer()
+            {
+                Id = 2,
+                Name = "Ronak",
+                Salary = 6500
+            };
+            Footballer footballer4 = new Footballer()
+            {
+                Id = 3,
+                Name = "Radika",
+                Salary = 8000
+            };
+
+            List<Footballer> listOfFootballer = new List<Footballer>(100); //initiate Capacity to 100;
+            listOfFootballer.Add(footballer1);
+            listOfFootballer.Add(footballer2);
+            listOfFootballer.Add(footballer3);
+            listOfFootballer.Add(footballer4);
+
+            //listOfFootballer.Sort(); //IComparable missing
+
+            //Console.WriteLine("List of Footballers before the Sorting---------------------------------------------");
+
+            //foreach(Footballer footballer in listOfFootballer)
+            //{
+            //    Console.WriteLine(footballer.Salary);
+            //}
+
+            //listOfFootballer.Sort();
+
+            //Console.WriteLine("List of Footballers after the Sorting---------------------------------------------");
+
+            //foreach (Footballer footballer in listOfFootballer)
+            //{
+            //    Console.WriteLine(footballer.Salary);
+            //}
+
+            //Sort by Footballer
+
+            Console.WriteLine("List of Footballers before the Sorting---------------------------------------------");
+
+            foreach (Footballer footballer in listOfFootballer)
+            {
+                Console.WriteLine(footballer.Salary);
+            }
+
+            listOfFootballer.Sort();
+
+            Console.WriteLine("List of Footballers after the Sorting by Salary---------------------------------------------");
+
+            var result = listOfFootballer.OrderBy(x => x.Name).ToList();
+
+            foreach (Footballer footballer in listOfFootballer)
+            {
+                Console.WriteLine(footballer.Salary);
+            }
+
+            SortByName sortByName = new SortByName();
+
+            listOfFootballer.Sort(sortByName);
+
+            Console.WriteLine("List of Footballers after the Sorting by Name---------------------------------------------");
+
+            foreach (Footballer footballer in listOfFootballer)
+            {
+                Console.WriteLine(footballer.Name);
+            }
+
+            //Comparison<Footballer> footballerCompare = new Comparison<Footballer>(CompareFootballer); //Steps - 2 Comparison delegates
+
+            //listOfFootballer.Sort(footballerCompare); //Steps - 3 Comparison delegates
+
+            //Alternative methods using delegates
+            //listOfFootballer.Sort(delegate (Footballer f1, Footballer f2) { return f1.Id.CompareTo(f2.Id); });
+
+            //Alternative methods using Lambda expression
+
+            listOfFootballer.Sort((x, y) => x.Id.CompareTo(y.Id));
+
+            Console.WriteLine("List of Footballers after the Sorting by Name---------------------------------------------");
+
+            foreach (Footballer footballer in listOfFootballer)
+            {
+                Console.WriteLine(footballer.Id);
+            }
+
+            //Usefull Methods for list
+
+            //1 - TrueForAll()
+            Console.WriteLine("All Salaries are greater than 5000 (TrueForAll) = " + listOfFootballer.TrueForAll(x => x.Salary > 5000));
+
+            //2 - AsReadOnly()
+            ReadOnlyCollection<Footballer> readOnlyFootballer =  listOfFootballer.AsReadOnly(); //Use System.Collections.ObjectModel
+            Console.WriteLine("Total Items = " + readOnlyFootballer.Count);
+
+            //3 - TrimExcess()
+
+            Console.WriteLine("Capacity before TrimExces = " + listOfFootballer.Capacity);
+
+            listOfFootballer.TrimExcess();
+            Console.WriteLine("Capacity After TrimExces = " + listOfFootballer.Capacity);
+
+
+            //List vs Dicitionary--------------------------------------------------------------------------------------------
+
+            Country country1 = new Country() { CountryCode = "IND", Name = "INDIA", Capital = "DELHI" };
+            Country country2 = new Country() { CountryCode = "AUS", Name = "AUSTRALIA", Capital = "CANBERRA" };
+            Country country3 = new Country() { CountryCode = "USA", Name = "UNITED STATES", Capital = "WASHINGTON D.C." };
+            Country country4 = new Country() { CountryCode = "GBR", Name = "UNITED KINGDOM", Capital = "LONDON" };
+
+
+            //Using list Method
+            //List<Country> countryList = new List<Country>();
+            //countryList.Add(country1);
+            //countryList.Add(country2);
+            //countryList.Add(country3);
+            //countryList.Add(country4);
+
+
+            //string usersChoice = string.Empty;
+
+            //do
+            //{
+                
+
+            //    Console.WriteLine("Please enter the country-code");
+            //    string strCountryCode = Console.ReadLine().ToUpper();
+
+            //    Country resultCountry = countryList.Find(country => country.CountryCode == strCountryCode);
+
+            //    if (resultCountry == null)
+            //    {
+            //        Console.WriteLine("Country-Code is not valid");
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("Country = {0}, Captial = {1}", resultCountry.Name, resultCountry.Capital);
+            //    }
+
+            //    do
+            //    {
+            //        Console.WriteLine("Do you want to continue - Yes or No?");
+            //        usersChoice = Console.ReadLine().ToUpper();
+            //    }
+            //    while (usersChoice != "YES" && usersChoice != "NO");
+
+            //}
+            //while (usersChoice == "YES");
+
+            //Using Dictionary
+
+            Dictionary<string, Country> dictionaryCountries = new Dictionary<string, Country>();
+
+            dictionaryCountries.Add(country1.CountryCode, country1);
+            dictionaryCountries.Add(country2.CountryCode, country2);
+            dictionaryCountries.Add(country3.CountryCode, country3);
+            dictionaryCountries.Add(country4.CountryCode, country4);
+
+            string usersChoice = string.Empty;
+
+            do
+            {
+
+
+                Console.WriteLine("Please enter the country-code");
+                string strCountryCode = Console.ReadLine().ToUpper();
+
+                Country resultCountry = dictionaryCountries.ContainsKey(strCountryCode) ? dictionaryCountries[strCountryCode] : null;
+
+                if (resultCountry == null)
+                {
+                    Console.WriteLine("Country-Code is not valid");
+                }
+                else
+                {
+                    Console.WriteLine("Country = {0}, Captial = {1}", resultCountry.Name, resultCountry.Capital);
+                }
+
+                do
+                {
+                    Console.WriteLine("Do you want to continue - Yes or No?");
+                    usersChoice = Console.ReadLine().ToUpper();
+                }
+                while (usersChoice != "YES" && usersChoice != "NO");
+
+
+            }
+            while (usersChoice == "YES");
+
+            //Queue Collection class ------------------------------------------------------------
+
+            Console.WriteLine("Queue Collection class ------------------------------------------------------------");
+
+            Gamer gamer1 = new Gamer()
+            {
+                Id = 1,
+                Name = "Ajay Nagar",
+                Gender = "Male"
+            };
+            Gamer gamer2 = new Gamer()
+            {
+                Id = 2,
+                Name = "Gaurav Seth",
+                Gender = "Male"
+            };
+            Gamer gamer3 = new Gamer()
+            {
+                Id = 3,
+                Name = "Laxmi Mittal",
+                Gender = "Female"
+            };
+            Gamer gamer4 = new Gamer()
+            {
+                Id = 4,
+                Name = "Shivani Singh",
+                Gender = "Female"
+            };
+
+            Queue<Gamer> queueGamers = new Queue<Gamer>();
+
+            //Add items using Enqueue() method; will add one-after other
+            queueGamers.Enqueue(gamer1);
+            queueGamers.Enqueue(gamer2);
+            queueGamers.Enqueue(gamer3);
+            queueGamers.Enqueue(gamer4);
+
+            //Retrive in Queue
+
+            //Gamer g1 = queueGamers.Dequeue();
+            //Console.WriteLine(g1.Id + " - " + g1.Name);
+            //Console.WriteLine("Total items in the Queue = " + queueGamers.Count); //Get total items after Dequeue.
+
+            //Gamer g2 = queueGamers.Dequeue();
+            //Console.WriteLine(g2.Id + " - " + g2.Name);
+            //Console.WriteLine("Total items in the Queue = " + queueGamers.Count);
+
+            //Gamer g3 = queueGamers.Dequeue();
+            //Console.WriteLine(g3.Id + " - " + g3.Name);
+            //Console.WriteLine("Total items in the Queue = " + queueGamers.Count);
+
+            //Gamer g4 = queueGamers.Dequeue();
+            //Console.WriteLine(g4.Id + " - " + g4.Name);
+            //Console.WriteLine("Total items in the Queue = " + queueGamers.Count);
+
+            //Retrive in Queue using Foreach
+                //Here we can retrive the items without removing it.
+
+            foreach(Gamer gamer in queueGamers)
+            {
+                Console.WriteLine(gamer.Id + " - " + gamer.Name);
+                Console.WriteLine("Total items in the Queue = " + queueGamers.Count);
+            }
+
+            Console.WriteLine("Peek Queue ------------------------------------------------------------");
+
+            Gamer pGamer = queueGamers.Peek();
+
+            Console.WriteLine(pGamer.Id + " - " + pGamer.Name);
+            Console.WriteLine("Total items in the Queue = " + queueGamers.Count);
+
+
+            //Gamer pGamer1 = queueGamers.Peek();
+
+            //Console.WriteLine(pGamer1.Id + " - " + pGamer1.Name);
+            //Console.WriteLine("Total items in the Queue = " + queueGamers.Count);
+
+            //will give the first item only, no change if we continue.
+
+            //Find  the item is exist or not
+
+            if(queueGamers.Contains(gamer3))
+            {
+                Console.WriteLine("Gamer Exist");
+            }
+            else
+            {
+                Console.WriteLine("Gamer does not Exist");
+            }
+
+            //Generic Stack Collection Class
+
+            Console.WriteLine("Generic Stack Collection Class-------------------------------------------------------------");
+
+            Players players1 = new Players()
+            {
+                Id = 1,
+                Name = "Christian Bale",
+                Gender = "Male"
+            };
+            Players players2 = new Players()
+            {
+                Id = 2,
+                Name = "Emma",
+                Gender = "Female"
+            };
+            Players players3 = new Players()
+            {
+                Id = 3,
+                Name = "Jonny Deep",
+                Gender = "Male"
+            };
+            Players players4 = new Players()
+            {
+                Id = 4,
+                Name = "Vin Diesel",
+                Gender = "Male"
+            };
+            Players players5 = new Players()
+            {
+                Id = 5,
+                Name = "Kylie",
+                Gender = "Female"
+            };
+
+            //Stack will add the last items to the top of the collections. Means last item will be on top and so on.
+
+            Stack<Players> stackPlayers = new Stack<Players>();
+            stackPlayers.Push(players1);
+            stackPlayers.Push(players2);
+            stackPlayers.Push(players3);
+            stackPlayers.Push(players4);
+            stackPlayers.Push(players5);
+
+            //Retrive or Remove from the TopOf
+
+            Players player1 = stackPlayers.Pop(); //This will retrive and remove the topof the item. Store it.
+            Players player2 = stackPlayers.Peek(); //This will retrive and not remove the topof the item. Store it.
+
+            //Console.WriteLine(players1.Id + " - " + players1.Name);
+            //Console.WriteLine("Total Items in Stack Collection = {0}", stackPlayers.Count);
+
+            foreach(Players players in stackPlayers)
+            {
+                Console.WriteLine(players.Id + " - " + players.Name);
+                Console.WriteLine("Total Items in Stack Collection = {0}", stackPlayers.Count);
+            }
+
+            if(stackPlayers.Contains(players1)) // Check the item is available or not
+            {
+                Console.WriteLine("Items exist");
+            }
+            else
+            {
+                Console.WriteLine("Items does not exist");
+            }
+
+
+
+            Console.WriteLine("Processor = {0}", Environment.ProcessorCount); //Computer has 4 processor
+
+            //Thread Perfomance
+
+            Stopwatch stopwatch = Stopwatch.StartNew();
+            EvenNumbersSum();
+            OddNumbersSum();
+            stopwatch.Stop();
+            Console.WriteLine("Miliseconds without Multiple Thread = " + stopwatch.ElapsedMilliseconds);
+
+            stopwatch = Stopwatch.StartNew();
+            Thread T1 = new Thread(EvenNumbersSum);
+            Thread T2 = new Thread(OddNumbersSum);
+
+            T1.Start();
+            T2.Start();
+
+            T1.Join(); //Join the both method
+            T2.Join();
+
+            stopwatch.Stop();
+            Console.WriteLine("Miliseconds with Multiple Thread = " + stopwatch.ElapsedMilliseconds);
+
+            //Anonymous Functions
+
+            List<Rider> listOfRiders = new List<Rider>()
+            {
+                new Rider() { Id = 1, Name = "Mark" },
+                new Rider() { Id = 2, Name = "John" },
+                new Rider() { Id = 3, Name = "Mary" },
+            };
+
+            //Step 2
+            //Predicate<Rider> predicateRider = new Predicate<Rider>(FindRider);
+
+            //Step 3
+            //Rider rider = listOfRiders.Find(x => FindRider(x));
+
+
+            //Anonymous 
+
+            //Delegate method
+            //Rider rider = listOfRiders.Find(delegate(Rider rid) { return rid.Id == 2; });
+
+            //Lambda expression
+            Rider rider = listOfRiders.Find(j => j.Id == 1);
+
+            Console.WriteLine("Id = {0} - Name = {1}", rider.Id, rider.Name);
+
+
+
+
+
+
         }  //---Main() Program ---Ends Here--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //Anonymous method
+
+        //Steps 1
+        //public static bool FindRider(Rider rider)
+        //{
+        //    return rider.Id == 1;
+        //}
+
+        public class Rider
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //Thread Perfomance
+        public static void EvenNumbersSum()
+        {
+            double sum = 0;
+            for (int i = 0; i < 5000000; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    sum = sum + i;
+                }
+            }
+            Console.WriteLine("Sum of EvenNumbers = {0}", sum);
+        }
+        public static void OddNumbersSum()
+        {
+            double sum = 0;
+            for (int i = 0; i < 5000000; i++)
+            {
+                if (i % 2 == 1)
+                {
+                    sum = sum + i;
+                }
+            }
+            Console.WriteLine("Sum of OddNumbers = {0}", sum);
+        }
+
+
 
         private static void Az1(int v1, int v2)
         {
