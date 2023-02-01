@@ -23,7 +23,7 @@ namespace AllinOneCSharp
     public class Program
 
     {
-        public static void Main()
+        public static async Task Main()
         {
 
             Class1 class1 = new Class1();
@@ -1514,19 +1514,50 @@ namespace AllinOneCSharp
             Rider rider = listOfRiders.Find(j => j.Id == 1);
 
             Console.WriteLine("Id = {0} - Name = {1}", rider.Id, rider.Name);
+            //Find more on Anonymous function on Google
 
 
+            //Async - Await 
+            //Change void to Task in Main method()
+            
+            Stopwatch sw = Stopwatch.StartNew();//To check time
 
+            var tasks = new List<Task> { ReadFile1(), ReadFile2()};
+            await Task.WhenAll(tasks);
 
+            sw.Stop();
+
+            Console.WriteLine("Take Taken to read = " + sw.ElapsedMilliseconds);
 
 
         }  //---Main() Program ---Ends Here--------------------------------------------------------------------------------
 
 
 
+        //Async - Await 
+        static async Task<string> ReadFile1() //using <string> because return type is string.
+        {
+            Console.WriteLine("1.1 - Task executed");
 
+            string readFile1 = await File.ReadAllTextAsync(@"C:\Users\techi\OneDrive\Desktop\jitan-task.txt");
 
+            Thread.Sleep(1000);
 
+            Console.WriteLine($"1.2 - Task executed \n {readFile1}");
+
+            return readFile1;
+        }
+
+        static async Task<string> ReadFile2() //using <string> because return type is string.
+        {
+            Console.WriteLine("2.1 - Task executed");
+
+            string readFile2 = await File.ReadAllTextAsync(@"C:\Users\techi\OneDrive\Desktop\jslogic-code.txt");
+
+            Console.WriteLine($"2.2 - Task executed \n {readFile2}");
+
+            return readFile2;
+        }
 
 
 
